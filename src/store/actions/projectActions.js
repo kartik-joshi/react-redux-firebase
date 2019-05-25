@@ -16,3 +16,15 @@ export const createProject = (project) => {
         }) 
     }
 }
+
+export const updateProject = (state) => {
+  return (dispatch,getState,{getFirebase,getFirestore}) =>{
+      const firestore  = getFirestore();
+      const ref = firestore.collection('projects').doc(state.project.id);
+      ref.set(state.project)
+      .then( dispatch({type:'UPDATE_PROJECT',}))
+      .catch((err) =>{
+        dispatch({type : 'UPDATE_PROJECT_ERROR',err})
+      }) 
+  }
+}

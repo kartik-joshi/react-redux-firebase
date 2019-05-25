@@ -4,9 +4,10 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import {Redirect} from 'react-router-dom';
 import moment from 'moment';
+import { Link } from 'react-router-dom'; 
 
 const ProjectDetails = (props) => {
-  const { project,auth } = props;
+  const { project,auth , id} = props;
   if (!auth.uid) return <Redirect to = '/signin' />
   if (project) {
     return (
@@ -15,6 +16,11 @@ const ProjectDetails = (props) => {
           <div className="card-content">
             <span className="card-title">{project.title}</span>
             <p>{project.content}</p>
+            <div className="input-field">
+              <Link to={'/updateproject/' + id}>
+                  <button className="grey lighten-1 z-depth-0">Update</button>
+              </Link>
+          </div>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>Posted by {project.authorFirstName} {project.authorLastName}</div>
@@ -38,7 +44,8 @@ const mapStateToProps = (state, ownProps) => {
   const project = projects ? projects[id] : null
   return {
     project: project,
-    auth : state.firebase.auth
+    auth : state.firebase.auth,
+    id 
   }
 }
 
