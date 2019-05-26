@@ -18,7 +18,6 @@ const store = createStore(rootReducer,
       reactReduxFirebase(fbConfig,{useFirestoreForProfile : true, userProfile : 'users', attachAuthIsReady : true}) // redux binding for firebase  
     )
   );
-  
 
 store.firebaseAuthIsReady.then(()=>{
   ReactDOM.render(<Provider store = {store}><App /></Provider>, document.getElementById('root')); 

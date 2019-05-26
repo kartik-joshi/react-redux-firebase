@@ -6,8 +6,9 @@ import 'firebase/auth';
 // Replace this with your own config details
 var config = {
     // your key 
+
   };
 firebase.initializeApp(config);
-firebase.firestore().settings({ timestampsInSnapshots: true });
+// firebase.firestore().settings({ timestampsInSnapshots: true });
 
-export default firebase 
+export default firebase

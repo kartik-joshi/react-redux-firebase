@@ -28,9 +28,11 @@ export class UpdateProject extends Component {
     if (!auth.uid) return <Redirect to = '/signin' />
     if (project) {
       if (this.state.flag) {
-        this.state.project = project
-        this.state.project.id= id
-        this.state.flag = false
+        project.id = id 
+        this.setState({
+          project : project,
+          flag : false 
+        })
       }
     return (
       <div className= 'container'>
@@ -84,5 +86,4 @@ export default compose(
   connect(mapStateToProps,mapDispatchToProps),
   firestoreConnect([{
     collection : 'projects'
-  }]))
-  (UpdateProject);
+  }]))(UpdateProject)
